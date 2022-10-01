@@ -1,0 +1,120 @@
+.RS{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0 0 2rem 0;
+    overflow: auto;
+    font-family: sans-serif;
+}
+.RS section{
+    border: 1px solid white;
+    background-color: rgba(7,14,21,0.3);
+    padding: 0rem 1rem;
+    margin: 0.7rem;
+    border-radius: 25px;
+}
+.RS section > label{
+    font-size: 1.4rem;
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    color: white;
+}
+#Employment:checked ~ fieldset{
+    display: flex;
+}
+#Schooling:checked ~ fieldset{
+    display: flex;
+}
+#Skills:checked ~ fieldset{
+    display: flex;
+}
+#Hobbies:checked ~ fieldset{
+    display: flex;
+}
+.RS fieldset{
+    display: none;
+    flex-direction: column;
+}
+.RS fieldset > ul:first-of-type, .RS fieldset > ul{
+    border: 1px solid white;
+    background: linear-gradient(rgba(7,14,21,0.9), rgba(7,14,21,0.5));
+    color: white;
+    font-family: sans-serif;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+    word-spacing: 3px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1);
+    margin: 1rem;
+    padding: 1rem;
+}
+.RS fieldset > ul li{
+    list-style: "■ " ;
+    list-style-position: inside;
+    font-size: 0.9rem;
+    margin: 3.5px 0;
+}
+
+/* Tablets */
+/*
+@media screen and (max-width: 624px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    section h2{
+        padding: 0.5rem;
+        margin: auto;
+        border-bottom: 1px solid black;
+        color: white;
+    }
+    section p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.2em;
+        word-spacing: 2px;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+    section img{
+        max-width: 50%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+
+/* Cellphones
+@media screen and (max-width: 420px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    section h2{
+        padding: 0.3rem;
+        margin: 4px auto;
+        border-bottom: 1px solid black;
+        background: rgba(21,21,21,0.3);
+        border-radius: 7px 7px 0 0;
+    }
+    section p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.1em;
+        text-align: justify;
+        word-spacing: 0px;
+        margin-bottom: 21px;
+    }
+    section img{
+        max-width: 40%;
+        max-width: 70%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+ */

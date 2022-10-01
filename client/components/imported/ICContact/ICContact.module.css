@@ -1,0 +1,218 @@
+.CS{
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 2.5rem);
+    overflow: auto;
+    font-family: sans-serif;
+}
+.CS h2{
+    color: rgb(143, 136, 61);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin: 0 0 7px 0;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid white;
+}
+.CS fieldset:first-of-type {
+    text-align: center;
+    margin: auto;
+    background-color: rgb(0,0,0,0.4);
+    border-radius: 14px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.CS fieldset:first-of-type label {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color:white;
+    align-items: center;
+    font-size: 0.9em;
+}
+.CS fieldset:first-of-type textarea {
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 400px;
+    max-height: 150px;
+}
+.ContactElement {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(240,240,240,0.8);
+    border: none;
+    border-radius: 4px;
+    color:black;
+    float: right;
+    width: 200px;
+}
+.ContactElement:hover {
+    background-color: white;
+    color:gray;
+}
+.ContactElement:invalid {
+    animation: notvalid 3s infinite;
+    transition: 1.5s;
+}
+@keyframes notvalid{
+    50% {
+        box-shadow: 3px 3px 3px 3px rgb(21, 2, 2);
+        background-color: white;
+    }
+}
+.ContactElement:focus {
+    background-color: white;
+    color:black;
+}
+.CS fieldset#recomend {
+    border-radius: 10px;
+    border: 1px solid white;
+    margin: 0 0 7px 0;
+}
+.CS legend {
+    color: white;
+    text-align: center;
+    padding: 7px;
+}
+#ContactSubmit{
+    padding: 3px 7px;
+    margin: 5px auto 0;
+    border-radius: 5px;
+    font-weight: 700;
+    width: auto;
+    text-align: center;
+    color:whitesmoke;
+    border:1px ridge gray;
+    background-color:  rgb(7, 14, 21, 0.7);
+    transition: 1s;
+}
+#ContactSubmit:hover {
+    color:white;
+    border:1px ridge white;
+    background-color: rgb(7, 14, 21, 1);
+    cursor: pointer;
+}
+.invalidFile{
+    position: fixed;
+    width: 280px;
+    left: calc(50% - 140px);
+    top: 50%;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin: auto;
+    padding: 0.7rem;
+    text-align: center;
+    background-color: rgb(1, 5, 30);
+    border:2px solid rgba(42, 1, 1 ,1);
+    border-radius: 14px;
+    color: rgb(245,245,245);
+    z-index: 50;
+}
+.ImgQr{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+.SelectImgQr{
+    display: none;
+}
+.ContentImgQr{
+    width: 100px;
+    height: 100px;
+    margin: 0px 3.5px 7px 3.5px;
+    padding: 3.5px;
+    font-size: 0.8rem;
+    text-align: center;
+    border: 1px solid whitesmoke;
+    overflow: hidden;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.7);
+}
+.Previews{
+    position: relative;
+    overflow: hidden;
+    top: -28px;
+    width: 110px;
+    height: 110px;
+    margin: 0px 3.5px 7px 3.5px;
+    border-radius: 7px;
+}
+.SpanDelete::before{
+    display: block;
+    position: relative;
+    z-index: 1;
+    margin: 0 3.5px;
+    text-align: center;
+    content: 'x';
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    border-radius: 7px 0;
+    color: rgba(255,255,255,0.7);
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+/* Tablets */
+/*
+@media screen and (max-width: 624px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    article h2{
+        padding: 0.5rem;
+        margin: auto;
+        border-bottom: 1px solid black;
+        color: white;
+    }
+    article p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.2em;
+        word-spacing: 2px;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+    article img{
+        max-width: 50%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+*/
+/* Cellphones */
+/*
+@media screen and (max-width: 420px){
+    body{
+        background-size: 240vw 100vh;
+    }
+    article h2{
+        padding: 0.3rem;
+        margin: 4px auto;
+        border-bottom: 1px solid black;
+        background: rgba(21,21,21,0.3);
+        border-radius: 7px 7px 0 0;
+    }
+    article p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.1em;
+        text-align: justify;
+        word-spacing: 0px;
+        margin-bottom: 21px;
+    }
+    article img{
+        max-width: 40%;
+        max-width: 70%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+*/

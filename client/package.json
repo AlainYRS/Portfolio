@@ -1,0 +1,40 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "description": "Frontend FullStack Progresive Webb App developed by Alain Rivera © with Next Js, Node Js, MySql & Firebase",
+  "main": "index.js",
+  "author": "Alain Y Rivera S",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "test": "test",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    ".": "next build & next start"
+  },
+  "proxy": "http://localhost:3000",
+  "type": "module",
+  "dependencies": {
+    "@typescript-eslint/parser": "^5.33.1",
+    "@typescript-eslint/typescript-estree": "^5.33.1",
+    "ajax": "^0.0.4",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "fetch": "^1.1.0",
+    "firebase": "^9.9.4",
+    "inquirer": "^9.1.0",
+    "mysql": "^2.18.1",
+    "next": "12.2.5",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "react-intl": "^6.0.5",
+    "sharp": "^0.30.7",
+    "tsutils": "^3.21.0"
+  },
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-next": "^12.2.5"
+  }
+}

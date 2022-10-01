@@ -1,0 +1,88 @@
+.Header_Div{
+    background-color: var(--Header_DivBackgroundColor ,rgb(70, 70, 70));
+}
+.Header_Div_Ul{
+    display: flex;
+    flex-flow: row;
+}
+.Header_Ul_Li{
+    width: var(--Header_Ul_LiWidth, 100%);
+    margin: var(--Header_Ul_LiMargin, 3.5px);
+}
+.Header_Ul_Li > a{
+    font-family: sans-serif;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    font-weight: rgba(7,14,21,1);
+    background-color: rgba(255,241,235,0.4);
+    border: 1px solid rgba(255,255,255,1);
+    border-radius: 7px;
+    padding:7px 4px;
+}
+.Header_Ul_Li > a:hover{
+    background: linear-gradient(transparent, black);
+    box-shadow: 0px 4px 0px gray;
+    color: white;
+    transition: .5s;
+}
+.Header_Ul_Li > a:hover ~ ul{
+    display: flex;
+    opacity: 1;
+}
+.Header_Li_Ul{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.3s;
+    width: calc(33% - 3.5px);
+    text-align: left;
+    background: linear-gradient(transparent, black);
+    border-radius: 7px;
+    padding: 3px 0px;
+    z-index: 1;
+}
+.Header_Li_Ul:hover{
+    opacity: 1;
+    display: flex;
+}
+.Header_Li_Ul_Li{
+    list-style-type: none;
+    position: relative;
+    border: 1px solid white;
+    background-color: rgba(40,40,40,1);
+    margin: 3.5px;
+    border-radius: 7px;
+    padding: 7px;
+}
+.Header_Li_Ul_Li a{
+    display: block;
+    text-decoration: none;
+    color:white;
+}
+.Header_Li_Ul_Li:hover{
+    background: linear-gradient(transparent, black);
+    color:white;
+    transition: .3s;
+}
+
+/* Tablets */
+/*
+@media screen and (max-width: 624px){
+    header{
+        max-width: 100%;
+    }    
+}
+*/
+
+/* Cellphones */
+/*
+@media screen and (max-width: 420px){
+    header{
+        max-width: 100%;
+    }    
+}
+*/

@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend FullStack Progresive Webb App developed by Alain Rivera © with Next Js, Node Js, MySql & Firebase",
+  "main": "index.js",
+  "author": "Alain Y Rivera S",
+  "license": "ISC",
+  "scripts": {
+    "test": "node test",
+    "dev": "nodemon index.js",
+    ".": "node index.js"
+  },
+  "proxy": "http://localhost:5000",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "inquirer": "^9.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "config": {
+    "port": "5000"
+  }
+}

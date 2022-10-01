@@ -1,0 +1,118 @@
+.PS{
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+.PS > label{
+    font-size: 1.4rem;
+    margin: auto;
+    padding: 1rem 0;
+    border-bottom: 1px solid white;
+    color: white;
+}
+#Employment:checked ~ fieldset{
+    display: flex;
+}
+#Schooling:checked ~ fieldset{
+    display: flex;
+}
+#Skills:checked ~ fieldset{
+    display: flex;
+}
+#Hobbies:checked ~ fieldset{
+    display: flex;
+}
+.PS fieldset{
+    display: flex;
+    flex-direction: column;
+}
+.PS fieldset > ul:first-of-type, .PS fieldset > ul{
+    border: 1px solid white;
+    background: linear-gradient(rgba(7,14,21,0.9), rgba(7,14,21,0.5));
+    color: white;
+    font-family: sans-serif;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+    word-spacing: 3px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1);
+    margin: 1rem;
+    padding: 1rem;
+}
+.PS fieldset > ul li{
+    list-style: "- ";
+    list-style-position: inside;
+    font-size: 0.9rem;
+    margin: 3.5px 0;
+}
+.divimg{
+    position: relative;
+    width:350px;
+    height: 210px;
+    max-width: 30%;
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid rgba(0,0,0,0.5);
+    filter: saturate(140%);
+}
+/* Tablets */
+/*
+@media screen and (max-width: 624px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    section h2{
+        padding: 0.5rem;
+        margin: auto;
+        border-bottom: 1px solid black;
+        color: white;
+    }
+    section p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.2em;
+        word-spacing: 2px;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+    section img{
+        max-width: 50%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+
+/* Cellphones */
+/*
+@media screen and (max-width: 420px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    section h2{
+        padding: 0.3rem;
+        margin: 4px auto;
+        border-bottom: 1px solid black;
+        background: rgba(21,21,21,0.3);
+        border-radius: 7px 7px 0 0;
+    }
+    section p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.1em;
+        text-align: justify;
+        word-spacing: 0px;
+        margin-bottom: 21px;
+    }
+    section img{
+        max-width: 40%;
+        max-width: 70%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}*/

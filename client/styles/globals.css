@@ -1,0 +1,73 @@
+@font-face{
+    font-family: montserrat;
+    src: url(../fonts/montserrat-thin-webfont.woff2);
+}
+html, body, footer,div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+    font-family: sans-serif;
+}
+body {
+	line-height: 1;
+	background-color: black;
+	background-image: url(../public/LobyBackground.png);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+:root{
+	/* UL Aside Menus */
+	--UlAsidePosition: sticky;
+	--UlAsideDisplay: flex;
+	--UlAsideDirection: row;
+	--UlAsideListStyle: none;
+	--UlAsideWidth: max-content;
+	--UlAsideHeight: max-content;
+	--UlAsideBackroundColor: rgba(0, 0, 0,1);
+	--UlAsidePadding: 0;
+	--UlAsideMargin: 0px;
+	--UlAsideColor: white;
+	--UlAsideTextDecoration: none;
+	--UlAsideZIndex: 0;
+	--UlAsideBorderWidth: 1px;
+	--UlAsideBorderColor: transparent;
+	--UlAsideBorderStyle: solid;
+	--UlAsideBorderRadius: 0;
+	/* Li Aside Menus */
+	--LiAsideListStyle: none;
+	--LiAsideWidth: 100%;
+	--LiAsideHeight: auto;
+	--LiAsideBackroundColor: transparent;
+	--LiAsideMargin: 3.5px;
+	--LiAsideBorderWidth: 1px;
+	--LiAsideBorderColor: transparent;
+	--LiAsideBorderStyle: none;
+	/* Li > a Aside Menus */
+	--LiAAsideFontFamily: sans-serif;
+	--LiAAsideDisplay: block;
+	--LiAAsideWidth: auto;
+	--LiAAsideHeight: auto;
+	--LiAAsideBackroundColor: rgba(255, 255, 255, 0.35);
+	--LiAAsidePadding: 0.4rem;
+	--LiAAsideColor: black;
+	--LiAAsideTextDecoration: none;
+	--LiAAsideTextAlign: center;
+	--LiAAsideBorderWidth: 1px;
+	--LiAAsideBorderColor: white;
+	--LiAAsideBorderStyle: solid;
+	--LiAAsideBorderRadius: 35px;
+}

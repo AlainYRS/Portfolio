@@ -1,0 +1,44 @@
+.Ul_Aside{
+    position: var(--UlAsidePosition, sticky);
+    top: 0px;
+    float: left;
+    width: 100%;
+    justify-content: space-around;
+    display: var(--UlAsideDisplay, flex);
+    flex-direction: var(--UlAsideDirection, column);
+    list-style: var(--UlAsideListStyle, none);
+    background-color: var(--UlAsideBackroundColor, transparent);
+    padding: var(--UlAsidePadding, 1rem);
+    margin: var(--UlAsideMargin, 7px);
+    z-index: var(--UlAsideZIndex, 0);
+    border-width: var(--UlAsideBorderWidth, 3px);
+    border-color: var(--UlAsideBorderColor, white);
+    border-style:  var(--UlAsideBorderStyle, solid);
+    border-radius: var(--UlAsideBorderRadius, 7px);
+}
+.Li_Aside{
+    display: block;
+    list-style: var(--LiAsideListStyle, none);
+    width: var(--LiAsideWidth, max-content);
+    height: var(--LiAsideHeight, max-content);
+    background-color: var(--LiAsideBackroundColor, transparent);
+    margin: var(--LiAsideMargin, 7px);
+    border-width: var(--LiAsideBorderWidth, 3px);
+    border-color: var(--LiAsideBorderColor, white);
+    border-style:  var(--LiAsideBorderStyle, solid);
+}
+.Li_Aside > a{
+    font-family: var(--LiAAsideFontFamily, sans-serif);
+    display: var(--LiAAsideDisplay, block);
+    width: var(--LiAAsideWidth, 100%);
+    height: var(--LiAAsideHeight, 100%);
+    background-color: var(--LiAAsideBackroundColor, transparent);
+    padding: var(--LiAAsidePadding, 1rem);
+    color: var(--LiAAsideColor, white);
+    text-decoration: var(--LiAAsideTextDecoration, none);
+    text-align: var(--LiAAsideTextAlign, center);
+    border-width: var(--LiAAsideBorderWidth, 3px);
+    border-color: var(--LiAAsideBorderColor, white);
+    border-style:  var(--LiAAsideBorderStyle, solid);
+    border-radius: var(--LiAAsideBorderRadius, 3.5px);
+}

@@ -1,0 +1,107 @@
+@font-face{
+    font-family: montserrat;
+    src: url(../fonts/montserrat-thin-webfont.woff2);
+}
+.LM{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: sans-serif;
+    padding: 2rem;
+}
+.LM h2{
+    font-size: 1.4rem;
+    display: block;
+    width: max-content;
+    margin: 1rem;
+    border-bottom: 1px solid white;
+    color: white;
+}
+.divimg{
+    position: relative;
+    width:350px;
+    height: 210px;
+    max-width: 30%;
+    margin: auto;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 5px solid rgba(0,0,0,0.5);
+    filter: saturate(140%);
+}
+.LM p{
+    position: relative;
+    background: linear-gradient(rgba(21,21,21,0.8), transparent);
+    color: white;
+    font-family: sans-serif;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+    word-spacing: 3px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,1);
+    margin: 1rem;
+    padding: 1rem;
+}
+
+/* Tablets */
+/*
+@media screen and (max-width: 624px){
+    body{
+        background-size: 210vw 100vh;
+    }
+    article h2{
+        padding: 0.5rem;
+        margin: auto;
+        border-bottom: 1px solid black;
+        color: white;
+    }
+    article p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.2em;
+        word-spacing: 2px;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+        text-align: justify;
+    }
+    article img{
+        max-width: 50%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+*/
+
+/* Cellphones */
+/*
+@media screen and (max-width: 420px){
+    body{
+        background-size: 280vw 100vh;
+    }
+    article h2{
+        padding: 0.3rem;
+        margin: 4px auto;
+        border-bottom: 1px solid black;
+        background: rgba(21,21,21,0.3);
+        border-radius: 7px 7px 0 0;
+    }
+    article p{
+        background: linear-gradient(rgba(21,21,21,0.7), transparent);
+        line-height: 1.1em;
+        text-align: justify;
+        word-spacing: 0px;
+        margin-bottom: 21px;
+    }
+    article img{
+        max-width: 40%;
+        max-width: 70%;
+        padding: 7px;
+        background-color: rgba(0,0,0,0.7);
+    }
+    header, main, footer{
+        max-width: 100%;
+    }    
+}
+*/
