@@ -32,7 +32,7 @@ export default function HomePage() {
         Personal_Photo: "/AlainRivera.jpeg",
         Personal_Introduction: 'I consider myself a proactive person who believes in personal development as result of individual improvement effort where self-motivation and self-management are fundamentals in an ethical daily applied behaviour focused on vision and objectives. I am stimulated by challenges that require intellectual skills as well as human relationships as a constant source of personal growth to learn and contribute to the collective goals achievement.'
       }}/>
-      <ICFooters {...{FotLegend: 'FullStack App developed by Alain Rivera © with Next Js, Node Js, MySql & Firebase'}}/>
+      <ICFooters {...{FotLegend: 'Developed by Alain Rivera ©'}}/>
     </>
   )
 }

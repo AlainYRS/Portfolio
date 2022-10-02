@@ -8,6 +8,11 @@ import { Storage, Auth, Firestore } from '../services/firebase'; // Firebase SDK
 import { listAll , ref, uploadBytes, uploadBytesResumable, getDownloadURL, connectStorageEmulator, deleteObject, deleteFiles } from "firebase/storage"; // Storage Funcions
 import { async } from '@firebase/util'; //Asyn Await utility
 import { Timestamp } from 'firebase/firestore';
+import HomePage from '../pages/index';
+import ICPagesHead from '../components/imported/ICPagesHead/ICPagesHead'
+import ICHeaderMenu from '../components/imported/ICHeaderMenu/ICHeaderMenu'
+import Loby from '../components/Loby.js'
+import ICFooters from '../components/imported/ICFooters/ICFooters'
 
 export default function Uploader(){
     // Jsons states to insert in Arrays
@@ -41,7 +46,6 @@ export default function Uploader(){
     const [CntNumbr, setCntNumbr] = useState('');
     const [CapImg, setCapImg] = useState(4);
 
-    
     // Json states for Firebase paths Storage
     const [FirebaseStoragePaths,setFirebaseStoragePaths] = useState(null) // Paths for resized images based on their concept type (ProfileImgPath,QrCodeImgPath,SkillsImgPath,ExperienceImgPath,ProjectImgPath)
     const [WebLink,setWebLink] = useState({}) // Json State with all fieldsets for MySQL and Firestore
@@ -212,6 +216,18 @@ export default function Uploader(){
         let newArr = [...Arr]
         newArr.splice(index,1)
         setArr(newArr)
+    }
+
+    const [Subprj, setSubprj] = useState([])
+
+    const subprojects = (Arr)=>{
+        let projArr = [];
+        Arr.map((arr)=>{
+            projArr.push({OptMenu: arr.projectTitle, RefLink: arr.projLinks, SubMenu: null})
+        })
+        return (
+            projArr
+        )
     }
 
     return(
@@ -585,6 +601,26 @@ export default function Uploader(){
             {PopUp &&
                 <section id={stylesWeb.WebBase}>
                     <button onClick={()=>setPopUp(false)}>Close Preview</button>
+                    <ICPagesHead {...{
+                        author: 'Alain',
+                        title: Candidate.firstName + " - Weblink",
+                        description: 'description',
+                        content: "Alain Rivera®",
+                        icon: "../Icons/AYRSIcon.png"
+                        }}/>
+                    <ICHeaderMenu {...{
+                        NavMenus: [
+                        {OptMenu: 'Resumenes', RefLink: '/resumePrw', SubMenu: null},
+                        {OptMenu: 'Proyectos', RefLink: '/projectsPrw', SubMenu: subprojects(ProjectsArray)},
+                        {OptMenu: 'Contacto', RefLink: '/contact', SubNavMenu: null},
+                        ]
+                    }}/>
+                   <Loby {...{
+                        Name: Candidate.firstName,
+                        Personal_Photo: (MyProfileImg[0] && MyProfileImg[0].orig_url),
+                        Personal_Introduction: Candidate.introduction
+                    }}/>
+                  <ICFooters {...{FotLegend: "Email: " + Candidate.email + ". Phone: " + Candidate.contactNumber}}/>
                 </section>
             }
             {invalidFilePopUp && <div className={styles.invalidFilePopUp} onClick={closeinvalidFilePopUp}>{invalidFilePopUp}</div>}
