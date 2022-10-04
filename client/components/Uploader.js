@@ -4,10 +4,10 @@ import Image from "next/image"; //Image tag from Next for SSR
 import styles from '../styles/Uploader.module.css'; //CSS Styling
 import stylesWeb from '../styles/UploaderWebsite.module.css'; //CSS Styling
 import stylesPrint from '../styles/UploaderPrintable.module.css'; //CSS Styling
-import { Storage, Auth, Firestore } from '../services/firebase'; // Firebase SDKs
+import { Storage, Auth, Firestore, ResumesColl, ISPathwayNPOColl } from '../services/firebase'; // Firebase SDKs
 import { listAll , ref, uploadBytes, uploadBytesResumable, getDownloadURL, connectStorageEmulator, deleteObject, deleteFiles } from "firebase/storage"; // Storage Funcions
 import { async } from '@firebase/util'; //Asyn Await utility
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp, collection, getDocs, addDoc, deleteDoc } from "firebase/firestore"
 import HomePage from '../pages/index';
 import ICPagesHead from '../components/imported/ICPagesHead/ICPagesHead'
 import ICHeaderMenu from '../components/imported/ICHeaderMenu/ICHeaderMenu'
@@ -102,16 +102,20 @@ export default function Uploader(){
     }
 
     /* Pendientes del programa
-    - github
     - env.local
     - Reglas de SQL
+    - Añadir fieldset de Idiomas
+    - Permitir en Job Experience poner Nowadays en fecha de termino para el ultimo empleo
     - PWA
     - Autenticación
-    - Sincronizar contenido prexistente en Imagenes de Storage para actualización de proyectos 
+    - Privacidad de datos
     - FrontEnd de la app
     - Exportación de Resume en PDF
     - Almacenamiento con Firestore
+    - JQuery & Ajax
     - Deployment
+
+    - resumes
     */
 
     const ImagesToStorage = () => { // Upload mapped images from user to be resized and storaged at Firebase
@@ -203,22 +207,30 @@ export default function Uploader(){
         })
     }
     const SaveInFirestore=()=>{
-
+        addDoc(ResumesColl,{
+            Profile: Candidate,
+            SocialMedias: SocMedArray,
+            Skills: SkillsArray,
+            SkillsImgPath: FirebaseStoragePaths.SkillsImgPath,
+            JobExperience: ExperienceArray,
+            JobExperienceImgPath: FirebaseStoragePaths.ExperienceImgPath,
+            Schooling: SchoolingArray,
+            Projects: ProjectsArray,
+            ProjectsImgPath: FirebaseStoragePaths.ProjectImgPath
+        })
     }
     function submitCandidate (e) {
-        // e.preventDefault();
-        ImagesToStorage(); // Uploads the images to Firebase Storage to be resized and storaged for retrievement
+        e.preventDefault(); // Prevent 
+        ImagesToStorage(); // Images upload process to Firebase Storage to be resized
         // {Retry>0 && setTimeout(()=>(ResizedStoragedURLs()),WaitTime)}
-        SaveInMySql() // MySql Update validated just to be activated by demand
-    //    SaveInFirestore()
+        SaveInMySql(); // MySql Database - Activated by demand
+        SaveInFirestore(); // Firestore Database - Activated by demand
     }
     const handleRemove = (setArr, Arr, index)=>{
         let newArr = [...Arr]
         newArr.splice(index,1)
         setArr(newArr)
     }
-
-    const [Subprj, setSubprj] = useState([])
 
     const subprojects = (Arr)=>{
         let projArr = [];
@@ -232,7 +244,7 @@ export default function Uploader(){
 
     return(
         <>
-            <form>
+            <form >
                 <button type="button" className={styles.PreviewSite} onClick={()=>setPopUp(true)}>Preview Portfolio Website</button>
                 <div className={styles.UploaderForm}>
                     {/* Profile */}
@@ -302,6 +314,7 @@ export default function Uploader(){
                                 <option value="TikTok" >TikTok</option>
                                 <option value="YouTube" >YouTube</option>
                                 <option value="LinkedIn" >LinkedIn</option>
+                                <option value="Indeed" >Indeed</option>
                                 <option value="Twitter" >Twitter</option>
                                 <option value="Pinterest" >Pinterest</option>
                                 <option value="Discord" >Discord</option>
@@ -332,6 +345,7 @@ export default function Uploader(){
                                             case "Instagram": IconSM = '/Icons/InstagramIcon.png'; break;
                                             case "Twitter": IconSM = '/Icons/TwitterIcon.png'; break;
                                             case "LinkedIn": IconSM = '/Icons/LinkedInIcon.png'; break;
+                                            case "Indeed": IconSM = '/Icons/IndeedIcon.png'; break;
                                             case "Pinterest": IconSM = '/Icons/PinterestIcon.png'; break;
                                             case "TikTok": IconSM = '/Icons/TikTokIcon.png'; break;
                                             case "Discord": IconSM = '/Icons/Discord.png'; break;
@@ -598,7 +612,7 @@ export default function Uploader(){
                 </div>
                 <button type="submit" className={styles.SubmitSite} onClick={(e)=>submitCandidate(e)}>Submit</button>
             </form>
-            {PopUp &&
+            {/* {PopUp &&
                 <section id={stylesWeb.WebBase}>
                     <button onClick={()=>setPopUp(false)}>Close Preview</button>
                     <ICPagesHead {...{
@@ -622,7 +636,7 @@ export default function Uploader(){
                     }}/>
                   <ICFooters {...{FotLegend: "Email: " + Candidate.email + ". Phone: " + Candidate.contactNumber}}/>
                 </section>
-            }
+            } */}
             {invalidFilePopUp && <div className={styles.invalidFilePopUp} onClick={closeinvalidFilePopUp}>{invalidFilePopUp}</div>}
         </>
     )

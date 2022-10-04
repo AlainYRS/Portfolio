@@ -39,7 +39,7 @@ export default function UploadPage(){
                 <Uploader />
             </main>
             <footer id={styles.PageFooter}>
-                <ICFooters {...{FotLegend: 'FullStack PWA developed by Alain Rivera © with Next Js, Node Js, MySql & Firebase'}}/>
+            <ICFooters {...{FotLegend: 'Developed by Alain Rivera ©'}}/>
             </footer>
         </div>
     )

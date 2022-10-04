@@ -28,7 +28,7 @@ export default function ProjectPage() {
                 ] 
             }}/>
             <Project />
-            <ICFooters {...{FotLegend: 'FullStack App developed by Alain Rivera © with Next Js, Node Js, MySql & Firebase'}}/>
+            <ICFooters {...{FotLegend: 'Developed by Alain Rivera ©'}}/>
         </>
     )
 }

@@ -1,9 +1,9 @@
 import '../styles/globals.css'
 
-function FullStackPWANextMySqlFirebase({ Component, pageProps }) {
+function AYRSPortfolio({ Component, pageProps }) {
   return(
     <Component {...pageProps} />
   ) 
 }
 
-export default FullStackPWANextMySqlFirebase
+export default AYRSPortfolio
