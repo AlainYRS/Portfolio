@@ -8,9 +8,11 @@ export default function Loby({Name, Personal_Photo, Personal_Introduction}) {
             <section>
                 <main className={styles.LM}>
                     <h2>{Name != '' ? Name : "Personal Introduction"}</h2>
-                    <div className={styles.divimg}>
-                        <Image src={Personal_Photo} layout="fill" alt={Name}/>
-                    </div>
+                        {Personal_Photo !== "" && 
+                            <div className={styles.divimg}>
+                                <Image src={Personal_Photo} layout="fill" alt={Name}/>
+                            </div>
+                        }
                     <p>{Personal_Introduction != '' ? Personal_Introduction : "Personal Description"}</p>
                 </main>
             </section>

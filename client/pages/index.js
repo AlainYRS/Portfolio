@@ -3,17 +3,6 @@ import ICHeaderMenu from '../components/imported/ICHeaderMenu/ICHeaderMenu'
 import Loby from '../components/Loby.js'
 import ICFooters from '../components/imported/ICFooters/ICFooters'
 
-/* Proyectos de AYRS
-HSBC
-IRSi Inmobiliaria y Construccion
-NIXIN
-China
-Tknoshop
-NPO
-Canada
-College Projects (ASPNET, )
-*/
-
 export default function HomePage() {
   return (
     <>

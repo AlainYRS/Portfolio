@@ -1,0 +1,64 @@
+{
+  "name": "Resume Web-Link",
+  "description": "Alain Yosseph Rivera Sanchez PWA Portfolio",
+  "short_name": "AlainYRS Portfolio",
+  "dir": "auto",
+  "lang": "en-US",
+  "id": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "orientation": "portrait-primary",
+  "theme_color": "#0A0A0A",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/static/Icons/AYRSIcon700.png",
+      "sizes": "700x700",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSIcon48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/Icons/AYRSMaskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/static/Icons/SWBackground.png",
+      "type": "image/png",
+      "sizes": "1366x702"
+    }
+  ]
+}

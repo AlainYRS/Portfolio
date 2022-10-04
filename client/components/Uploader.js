@@ -4,10 +4,10 @@ import Image from "next/image"; //Image tag from Next for SSR
 import styles from '../styles/Uploader.module.css'; //CSS Styling
 import stylesWeb from '../styles/UploaderWebsite.module.css'; //CSS Styling
 import stylesPrint from '../styles/UploaderPrintable.module.css'; //CSS Styling
-import { Storage, Auth, Firestore, ResumesColl, ISPathwayNPOColl } from '../services/firebase'; // Firebase SDKs
 import { listAll , ref, uploadBytes, uploadBytesResumable, getDownloadURL, connectStorageEmulator, deleteObject, deleteFiles } from "firebase/storage"; // Storage Funcions
-import { async } from '@firebase/util'; //Asyn Await utility
+import { Storage, Auth, Firestore, ResumesColl, ISPathwayNPOColl } from '../services/firebase'; // Firebase SDKs
 import { Timestamp, collection, getDocs, addDoc, deleteDoc } from "firebase/firestore"
+import { async } from '@firebase/util'; //Asyn Await utility
 import HomePage from '../pages/index';
 import ICPagesHead from '../components/imported/ICPagesHead/ICPagesHead'
 import ICHeaderMenu from '../components/imported/ICHeaderMenu/ICHeaderMenu'
@@ -22,6 +22,7 @@ export default function Uploader(){
     const [NewExpJson, setNewExpJson] = useState({}) //(Job Experience Jsons)
     const [NewSchoolJson,setNewSchoolJson] = useState({}) //(Schooling Jsons)
     const [NewProjJson,setNewProjJson] = useState({}) //(Projects Jsons)
+    const [NewLangJson,setNewLangJson] = useState({}) //(Projects Jsons)
     
     // Arrays filled with Jsons
     const [SocMedArray,setSocMedArray]=useState([]) // Social Medias Array with NewSMJson Jsons
@@ -29,6 +30,7 @@ export default function Uploader(){
     const [ExperienceArray,setExperienceArray]=useState([]) // Jobs Array with NewExpJson Jsons
     const [SchoolingArray,setSchoolingArray]=useState([])   // Schools Array with NewSchoolJson Jsons
     const [ProjectsArray,setProjectsArray]=useState([]) // Projects Array with NewProjJson Jsons
+    const [LanguagesArray,setLanguagesArray]=useState([]) // Languages Array with NewProjJson Jsons
 
     // Images states to resize & storage at Firebase
     const [MyProfileImg,setMyProfileImg] = useState([]) // Profile Image
@@ -36,6 +38,7 @@ export default function Uploader(){
     const [SkillEvidenceImg,setSkillEvidenceImg] = useState([]) // Skills Images
     const [ExperienceEvidenceImg,setExperienceEvidenceImg] = useState([]) // Jobs Images
     const [ProjectEvidenceImg,setProjectEvidenceImg] = useState([]) // Projects Images
+    const [LanguagesEvidenceImg,setLanguagesEvidenceImg] = useState([]) // Languages Images
 
     // Complements
     const types = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/webp'] // Valid formats for images
@@ -72,6 +75,7 @@ export default function Uploader(){
                 SkillsImgPath: StoragePath + 'Skills/', // Path for SkillsImg
                 ExperienceImgPath: StoragePath + 'Experience/', // Path for ExperienceImg
                 ProjectImgPath: StoragePath + 'Projects/', // Path for ProjectImg
+                LanguagesImgPath: StoragePath + 'Languages/', // Path for LanguagesImg
             }) // Sets FirebaseStoragePaths with Json ID & paths
     }
     
@@ -104,18 +108,15 @@ export default function Uploader(){
     /* Pendientes del programa
     - env.local
     - Reglas de SQL
-    - Añadir fieldset de Idiomas
     - Permitir en Job Experience poner Nowadays en fecha de termino para el ultimo empleo
-    - PWA
     - Autenticación
     - Privacidad de datos
     - FrontEnd de la app
     - Exportación de Resume en PDF
-    - Almacenamiento con Firestore
     - JQuery & Ajax
     - Deployment
-
-    - resumes
+    - Translation Languages
+    - Cover Letter
     */
 
     const ImagesToStorage = () => { // Upload mapped images from user to be resized and storaged at Firebase
@@ -135,6 +136,9 @@ export default function Uploader(){
         {ProjectEvidenceImg[0] && ProjectEvidenceImg.map((Project)=>{ // If ProjectEvidenceImg has elements
             uploadBytes(ref(Storage, FirebaseStoragePaths.ProjectImgPath + Project.name), Project.file) // Upload bytes to Storage at Firebase
         })}
+        {LanguagesEvidenceImg[0] && LanguagesEvidenceImg.map((Language)=>{ // If LanguagesEvidenceImg has elements
+            uploadBytes(ref(Storage, FirebaseStoragePaths.LanguagesImgPath + Language.name), Language.file) // Upload bytes to Storage at Firebase
+        })}
     }
     useEffect(() => {
         {FirebaseStoragePaths == null && CreateID(7)} // Defines a New ID  with encryption level between 7 and 35 if there is not assigned yet and the paths for firebase.
@@ -144,7 +148,8 @@ export default function Uploader(){
             'Skills': SkillsArray, // Update each Skills fieldset with their last data
             'Experience': ExperienceArray, // Update each Experience fieldset with their last data
             'Schooling': SchoolingArray, // Update each Schooling fieldset with their last data
-            'Project': ProjectsArray, // Update each Project fieldset with their last data
+            'Projects': ProjectsArray, // Update each Project fieldset with their last data
+            'Languages': LanguagesArray, // Update each Project fieldset with their last data
         });
         // setURLsResized({ // Json with resized URLs from Firebase Storage
         //     'Profile': URLRsdProfile, // URLs resized images for Profile section.
@@ -153,7 +158,7 @@ export default function Uploader(){
         //     'Job': URLRsdJob, // URLs resized images for Job section.
         //     'Project': URLRsdProject, // URLs resized images for Project section.
         // });
-    }, [Candidate, SocMedArray, SkillsArray, ExperienceArray, ProjectsArray, SchoolingArray]) // Trigers to update when change
+    }, [Candidate, SocMedArray, SkillsArray, ExperienceArray, ProjectsArray, SchoolingArray, LanguagesArray]) // Trigers to update when change
     // }, [Candidate, SocMedArray, SkillsArray, ExperienceArray, ProjectsArray, SchoolingArray,URLRsdProfile,URLRsdQr,URLRsdSkill,URLRsdJob,URLRsdProject]) // Trigers to update when change
 
     // async function ResizedStoragedURLs() {
@@ -216,7 +221,8 @@ export default function Uploader(){
             JobExperienceImgPath: FirebaseStoragePaths.ExperienceImgPath,
             Schooling: SchoolingArray,
             Projects: ProjectsArray,
-            ProjectsImgPath: FirebaseStoragePaths.ProjectImgPath
+            ProjectsImgPath: FirebaseStoragePaths.ProjectImgPath,
+            LanguagesImgPath: FirebaseStoragePaths.LanguagesImgPath
         })
     }
     function submitCandidate (e) {
@@ -601,6 +607,79 @@ export default function Uploader(){
                                                 <span className={styles.SpanDelete} draggable={true} onDragEnd={() => handleRemove(setProjectEvidenceImg, ProjectEvidenceImg,index)} key={index} id={index} onClick={() => handleRemove(setProjectEvidenceImg, ProjectEvidenceImg,index)}></span>
                                                 <div className={styles.Previews}>
                                                     <Image src={Evidence.orig_url} layout="fill" alt="Project Evidence" onDragEnd={() => handleRemove(setProjectEvidenceImg, ProjectEvidenceImg,index)} />
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </details>
+                    </fieldset>
+                    {/* Languages */}
+                    <fieldset className={styles.SectionFieldset}>
+                        <label htmlFor='Language'>Language
+                            <input onChange={(e)=> setNewLangJson({...NewLangJson,[e.target.name]:e.target.value, 'langImg': FirebaseStoragePaths.LanguagesImgPath})} id='Language' className={styles.ContactElement} name='Language' maxLength={40} value={NewLangJson.Language}/>
+                        </label>
+                        <label htmlFor='Reading'>Reading
+                            <input onChange={(e)=> setNewLangJson({...NewLangJson,[e.target.name]:e.target.value})} id='Reading' className={styles.ContactElement} name='Reading' type='text' maxLength={14} value={NewLangJson.Reading}/>
+                        </label>
+                        <label htmlFor='Writting'>Writting
+                            <input onChange={(e)=> setNewLangJson({...NewLangJson,[e.target.name]:e.target.value})} id='Writting' className={styles.ContactElement} name='Writting'  type='text' maxLength={14} value={NewLangJson.Writting}/>
+                        </label>
+                        <label htmlFor='Speaking'>Speaking
+                            <input onChange={(e)=> setNewLangJson({...NewLangJson,[e.target.name]:e.target.value})} id='Speaking' className={styles.ContactElement} name='Speaking'  type='text' maxLength={14} value={NewLangJson.Speaking}/>
+                        </label>
+                        <label htmlFor='Listening'>Listening
+                            <input onChange={(e)=> setNewLangJson({...NewLangJson,[e.target.name]:e.target.value})} id='Listening' className={styles.ContactElement} name='Listening' type='text' maxLength={14} value={NewLangJson.Listening}/>
+                        </label>
+                        <a className={styles.ContactSubmit}
+                            onClick={(e)=>{
+                                (NewLangJson.Language && NewLangJson.Reading && NewLangJson.Writting && NewLangJson.Speaking && NewLangJson.Listening) &&
+                                setLanguagesArray(LanguagesArray.concat(NewLangJson))
+                                setNewLangJson({
+                                    Language: '',
+                                    Reading: '',
+                                    Writting: '',
+                                    Speaking: '',
+                                    Listening: ''
+                                })
+                            }}
+                        >Add Language</a>
+                        <details className={styles.details} open><summary>Attach Language Images Evidence</summary>
+                            <div className={styles.Added}>
+                                {LanguagesArray[0] && LanguagesArray.map((lang,index)=>{
+                                    return(
+                                        <div className={styles.DivBlock} key={index} draggable={true} onDragEnd={() => handleRemove(setLanguagesArray, LanguagesArray,index)}>
+                                            <a>{lang.Language}</a>
+                                            <span onClick={() => handleRemove(setLanguagesArray,LanguagesArray,index)}>x</span>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            <div className={styles.ImgsRsz}>
+                                {LanguagesEvidenceImg.length < CapImg ?
+                                    <label className={styles.ContentImgRsz} htmlFor="langImg">Evidence Images. Optional (Max {CapImg - LanguagesEvidenceImg.length})
+                                        <input id="langImg" className={styles.SelectImgRsz} type="file" name="langImg" multiple accept="image/x-png,image/jpg,image/jpeg,image/gif,image/webp"
+                                            onChange={(e) => ToResize(e,setLanguagesEvidenceImg, LanguagesEvidenceImg)}
+                                        />
+                                    </label>
+                                    :
+                                    <>
+                                        {LanguagesEvidenceImg.length > CapImg && 
+                                            (
+                                                setTimeout(()=>setLanguagesEvidenceImg([]),WaitTime),
+                                                <h4>No more than {CapImg} Images</h4>
+                                            )
+                                        }
+                                    </>
+                                }
+                                {(LanguagesEvidenceImg[0] && LanguagesEvidenceImg.length <= CapImg) && 
+                                    LanguagesEvidenceImg.map((Evidence, index)=>{
+                                        return(
+                                            <div key={index} >
+                                                <span className={styles.SpanDelete} draggable={true} onDragEnd={() => handleRemove(setLanguagesEvidenceImg, LanguagesEvidenceImg,index)} key={index} id={index} onClick={() => handleRemove(setLanguagesEvidenceImg, LanguagesEvidenceImg,index)}></span>
+                                                <div className={styles.Previews}>
+                                                    <Image src={Evidence.orig_url} layout="fill" alt="Language Evidence" onDragEnd={() => handleRemove(setLanguagesEvidenceImg, LanguagesEvidenceImg,index)} />
                                                 </div>
                                             </div>
                                         )

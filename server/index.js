@@ -56,11 +56,19 @@ servapp.post("/api/insert",(req,res)=>{
         })
     }
 
-    const Project = req.body.Project;
+    const Project = req.body.Projects;
     if(Project[0] !== undefined){
         Project.map((project)=>{
             const sqlInsertProject = "INSERT INTO `projects` (candidateId,projectTitle,projDescr,projObjectives,projAchievements,projLinks,projImg) VALUES (?,?,?,?,?,?,?)"
             db.query(sqlInsertProject,[Candidate.candidateId,project.projectTitle,project.projDescr,project.projObjectives,project.projAchievements,project.projLinks,project.projImg],(err,result)=>console.log(result,err));
+        })
+    }
+
+    const Languaje = req.body.Languages;
+    if(Languaje[0] !== undefined){
+        Languaje.map((languaje)=>{
+            const sqlInsertLanguage = "INSERT INTO `projects` (candidateId,Language,Reading,Writting,Speaking,Listening,langImg) VALUES (?,?,?,?,?,?,?)"
+            db.query(sqlInsertLanguage,[Candidate.candidateId,languaje.Language,languaje.Reading,languaje.Writting,languaje.Speaking,languaje.Listening,languaje.langImg],(err,result)=>console.log(result,err));
         })
     }
 })
