@@ -4,9 +4,9 @@ import Image from "next/image"; //Image tag from Next for SSR
 import styles from '../styles/Uploader.module.css'; //CSS Styling
 import stylesWeb from '../styles/UploaderWebsite.module.css'; //CSS Styling
 import stylesPrint from '../styles/UploaderPrintable.module.css'; //CSS Styling
-import { listAll , ref, uploadBytes, uploadBytesResumable, getDownloadURL, connectStorageEmulator, deleteObject, deleteFiles } from "firebase/storage"; // Storage Funcions
+import { listAll , ref, uploadBytes, uploadBytesResumable, getDownloadURL, connectStorageEmulator, deleteObject, deleteFiles } from "firebase/storage"; // Storage Funcions to upload, resize and retrieve
 import { Storage, Auth, Firestore, ResumesColl, ISPathwayNPOColl } from '../services/firebase'; // Firebase SDKs
-import { Timestamp, collection, getDocs, addDoc, deleteDoc } from "firebase/firestore"
+import { Timestamp, collection, getDocs, addDoc, deleteDoc } from "firebase/firestore" // Firestore commands for CRUD
 import { async } from '@firebase/util'; //Asyn Await utility
 import HomePage from '../pages/index';
 import ICPagesHead from '../components/imported/ICPagesHead/ICPagesHead'
@@ -23,7 +23,7 @@ export default function Uploader(){
     const [NewExpJson, setNewExpJson] = useState({}) //(Job Experience Jsons)
     const [NewSchoolJson,setNewSchoolJson] = useState({}) //(Schooling Jsons)
     const [NewProjJson,setNewProjJson] = useState({}) //(Projects Jsons)
-    const [NewLangJson,setNewLangJson] = useState({}) //(Projects Jsons)
+    const [NewLangJson,setNewLangJson] = useState({}) //(Language Jsons)
     
     // Arrays filled with Jsons
     const [SocMedArray,setSocMedArray]=useState([]) // Social Medias Array with NewSMJson Jsons
@@ -79,10 +79,8 @@ export default function Uploader(){
                 LanguagesImgPath: StoragePath + 'Languages/', // Path for LanguagesImg
             }) // Sets FirebaseStoragePaths with Json ID & paths
     }
-    
     //Cierra PopUp de Formato invalida
     const closeinvalidFilePopUp = () => {setinvalidFilePopUp(null)}
-
     // Prepare Images to upload & resize at Firebase Storage
     function ToResize(e,setState, State) { // Receives object data & state to keep Jsons
         var MapedImages = State; // First Local Array defined by previous images selected by user
@@ -108,7 +106,6 @@ export default function Uploader(){
 
     /* Pendientes del programa
     - Reglas de SQL
-    - RealTime Database
     - Permitir en Job Experience poner Nowadays en fecha de termino para el ultimo empleo
     - Autenticación
     - Privacidad de datos
@@ -206,13 +203,15 @@ export default function Uploader(){
     //     })
     // }
 
-    const SaveInMySql=()=>{
+    // Process to Store data with SQL format into MySql Database based on server connected
+    const MySqlDatabase=()=>{
         Axios.post('http://localhost:5000/api/insert',WebLink)
         .then(()=>{
             console.log("Succesfull Insertion")
         })
     }
-    const SaveInFirestore=()=>{
+    // Process to Store data with NoSQL-Json format into Firebase Firestore at Google Cloud
+    const FirestoreDatabase=()=>{
         addDoc(ResumesColl,{
             Profile: Candidate,
             SocialMedias: SocMedArray,
@@ -229,10 +228,8 @@ export default function Uploader(){
     function submitCandidate (e) {
         e.preventDefault(); // Prevent 
         ImagesToStorage(); // Images upload process to Firebase Storage to be resized
-        SaveInMySql(); // MySql Database - Activated by demand
-        SaveInFirestore(); // Firestore Database - Activated by demand
-        // SaveInRealTimeDatabase(); // SQL Firebase Database
-
+        MySqlDatabase(); // MySql Database - Activated by demand
+        FirestoreDatabase(); // Firestore Database - Activated by demand
         // {Retry>0 && setTimeout(()=>(ResizedStoragedURLs()),WaitTime)}
     }
     const handleRemove = (setArr, Arr, index)=>{
@@ -241,7 +238,7 @@ export default function Uploader(){
         setArr(newArr)
     }
 
-    const subprojects = (Arr)=>{
+    const subprojects = (Arr)=>{ // Function to pass submenus automatically
         let projArr = [];
         Arr.map((arr)=>{
             projArr.push({OptMenu: arr.projectTitle, RefLink: arr.projLinks, SubMenu: null})
@@ -637,7 +634,7 @@ export default function Uploader(){
                         </label>
                         <a className={styles.ContactSubmit}
                             onClick={(e)=>{
-                                (NewLangJson.Language && NewLangJson.Reading && NewLangJson.Writting && NewLangJson.Speaking && NewLangJson.Listening) &&
+                                (NewLangJson.Language !== "") &&
                                 setLanguagesArray(LanguagesArray.concat(NewLangJson))
                                 setNewLangJson({
                                     Language: '',

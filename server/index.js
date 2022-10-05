@@ -6,8 +6,8 @@ import cors from 'cors';
 
 const servapp = express();
 
-const db = mysql.createPool({
-    host : "localhost", //"34.130.134.147"
+const db = mysql.createPool({ // Here is stablished the Server connection requirements as host, user, password and database name.
+    host : "localhost",
     user : "root",
     password : "password",
     database : "mysql_portfolio",
@@ -19,7 +19,6 @@ servapp.use(bodyParser.urlencoded({extended:true}));
 
 servapp.post("/api/insert",(req,res)=>{
 
-    const WebLink = req.body
     const Candidate = req.body.Candidate;
     const sqlInsertProfile = "INSERT INTO `candidates` (candidateId, firstName, lastName, email, contactNumber, imageURL, introduction, qrCode, baseColor, fontColor, registeredDate) VALUES (?,?,?,?,?,?,?,?,?,?,Now())";
     db.query(sqlInsertProfile,[Candidate.candidateId,Candidate.firstName,Candidate.lastName,Candidate.email,Candidate.contactNumber,Candidate.imageURL,Candidate.introduction,Candidate.qrCode,Candidate.baseColor,Candidate.fontColor],(err,result)=>console.log(result,err));
@@ -67,7 +66,7 @@ servapp.post("/api/insert",(req,res)=>{
     const Languaje = req.body.Languages;
     if(Languaje[0] !== undefined){
         Languaje.map((languaje)=>{
-            const sqlInsertLanguage = "INSERT INTO `projects` (candidateId,Language,Reading,Writting,Speaking,Listening,langImg) VALUES (?,?,?,?,?,?,?)"
+            const sqlInsertLanguage = "INSERT INTO `languages` (candidateId,Language,Reading,Writting,Speaking,Listening,langImg) VALUES (?,?,?,?,?,?,?)"
             db.query(sqlInsertLanguage,[Candidate.candidateId,languaje.Language,languaje.Reading,languaje.Writting,languaje.Speaking,languaje.Listening,languaje.langImg],(err,result)=>console.log(result,err));
         })
     }
