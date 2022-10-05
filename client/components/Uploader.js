@@ -15,6 +15,7 @@ import Loby from '../components/Loby.js'
 import ICFooters from '../components/imported/ICFooters/ICFooters'
 
 export default function Uploader(){
+
     // Jsons states to insert in Arrays
     const [Candidate, setCandidate] = useState({})  //Profile data (Name, mail, contact, intro)
     const [NewSMJson,setNewSMJson] = useState({}) //(Social Media Jsons)
@@ -106,8 +107,8 @@ export default function Uploader(){
     }
 
     /* Pendientes del programa
-    - env.local
     - Reglas de SQL
+    - RealTime Database
     - Permitir en Job Experience poner Nowadays en fecha de termino para el ultimo empleo
     - Autenticación
     - Privacidad de datos
@@ -228,9 +229,11 @@ export default function Uploader(){
     function submitCandidate (e) {
         e.preventDefault(); // Prevent 
         ImagesToStorage(); // Images upload process to Firebase Storage to be resized
-        // {Retry>0 && setTimeout(()=>(ResizedStoragedURLs()),WaitTime)}
         SaveInMySql(); // MySql Database - Activated by demand
         SaveInFirestore(); // Firestore Database - Activated by demand
+        // SaveInRealTimeDatabase(); // SQL Firebase Database
+
+        // {Retry>0 && setTimeout(()=>(ResizedStoragedURLs()),WaitTime)}
     }
     const handleRemove = (setArr, Arr, index)=>{
         let newArr = [...Arr]

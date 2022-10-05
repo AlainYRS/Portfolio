@@ -76,7 +76,7 @@ self.addEventListener('fetch', (event) => {
           })
       })
       .catch(() => {
-        caches.match('/_offline.js')
+        caches.match('/offline.js')
         // if(event.request.url.indexOf('.png')>-1){
         //   return cache.match('/_next/static/chunks/pages/offline.js?ts=1617519020359')//Verificar la ruta en caso de que no funcione
         // }
